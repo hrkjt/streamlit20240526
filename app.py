@@ -559,6 +559,9 @@ def get_random_pt():
   random_float = int(random.random()*10)/10
   random_id = df_first[id].unique()[int(len(df_first[id].unique())*random_float)]
   dfpt = df_first[df_first[id] == random_id]
+  nan_rows_count = dfpt.isnull().any(axis=1).sum()
+  if nan_rows_count > 0:
+    dfpt = get_random_pt()
   return(dfpt)
 
 #初診患者のパラメータの入力
