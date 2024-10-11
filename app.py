@@ -559,7 +559,9 @@ def get_random_pt():
   random_float = int(random.random()*10)/10
   random_id = df_first[id].unique()[int(len(df_first[id].unique())*random_float)]
   dfpt = df_first[df_first[id] == random_id]
-  print(dfpt)
+  parameters = ['月齢（概算）', '前後径', '左右径', '頭囲', '短頭率', '前頭部対称率', '後頭部対称率', 'CA', 'CVAI']
+  dfpt = dfpt[parameters]
+  #print(dfpt)
   nan_rows_count = dfpt.isnull().any(axis=1).sum()
   if nan_rows_count > 0:
     dfpt = get_random_pt()
